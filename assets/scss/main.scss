@@ -59,6 +59,7 @@
 	/*----------| z index |----------*/
 	--z-tooltip: 10;
 	--z-fixed: 100;
+	--z-loader: 200;
 }
 
 /*---------------| BASE |---------------*/
@@ -116,6 +117,41 @@ button {
 img {
 	max-width: 100%;
 	height: auto;
+}
+
+/*---------------| PRELOADER |---------------*/
+.loader {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	transition: 0.4s;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--body-color);
+	z-index: var(--z-loader);
+
+	&.hide {
+		opacity: 0;
+	}
+
+	&__icon {
+		width: 50px;
+		height: 50px;
+		position: relative;
+		border-radius: 50%;
+		border: 3px solid rgba(255, 255, 255, 0.15);
+		border-bottom-color: var(--white-color);
+		animation: loader 1.3s linear infinite;
+	}
+}
+
+@keyframes loader {
+	100% {
+		transform: rotate(360deg);
+	}
 }
 
 /*---------------| REUSABLE CSS CLASSES |---------------*/
@@ -738,7 +774,7 @@ img {
 		}
 
 		&__container {
-			grid-template-columns: repeat (2, 1fr);
+			grid-template-columns: repeat(2, 1fr);
 			justify-items: center;
 			align-items: center;
 		}

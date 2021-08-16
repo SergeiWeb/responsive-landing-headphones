@@ -41,6 +41,7 @@
   /*----------| z index |----------*/
   --z-tooltip: 10;
   --z-fixed: 100;
+  --z-loader: 200;
 }
 
 @media screen and (min-width: 968px) {
@@ -112,6 +113,57 @@ button {
 img {
   max-width: 100%;
   height: auto;
+}
+
+/*---------------| PRELOADER |---------------*/
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: var(--body-color);
+  z-index: var(--z-loader);
+}
+
+.loader.hide {
+  opacity: 0;
+}
+
+.loader__icon {
+  width: 50px;
+  height: 50px;
+  position: relative;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.15);
+  border-bottom-color: var(--white-color);
+  -webkit-animation: loader 1.3s linear infinite;
+          animation: loader 1.3s linear infinite;
+}
+
+@-webkit-keyframes loader {
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes loader {
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
 }
 
 /*---------------| REUSABLE CSS CLASSES |---------------*/
@@ -779,8 +831,8 @@ img {
     position: initial;
   }
   .discount__container {
-    -ms-grid-columns: repeat 2, 1fr;
-        grid-template-columns: repeat 2, 1fr;
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
     justify-items: center;
     -webkit-box-align: center;
         -ms-flex-align: center;
